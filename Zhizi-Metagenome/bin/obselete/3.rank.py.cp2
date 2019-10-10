@@ -1,0 +1,43 @@
+# -*- coding UTF-8 -*-
+import numpy as np
+import pandas as pd
+
+
+def extractFeature(data, feature):
+    # extract each feature
+    sub = data.pivot(index='Animal', columns='Time', values=feature)
+    sub.columns = feature + '.' + sub.columns
+    # add animal name from index information
+    newcol = sub.columns.insert(0, 'Animal')
+    sub = sub.reindex(columns=newcol, fill_value=0)
+    sub['Animal'] = sub.index
+    # add group name from animal information
+    newcol = sub.columns.insert(0, 'Group')
+    sub = sub.reindex(columns=newcol, fill_value=0)
+    sub['Group'] = sub['Animal'].str.split('-', expand=True)[0]
+    # rank for each time point
+    for i in range(2, sub.columns.size):
+        colname = sub.columns[i]
+        colrank = colname.replace('.', '.rank.')
+        sub[colrank] = sub[colname].groupby(sub['Group']).rank()
+    return(sub)
+
+
+def summaryTable(infile, outfile):
+    infile='../data/2019.09.rawData.txt'
+    data = pd.read_csv(infile, sep="\t")
+    data.columns = ['Animal', 'Time', 'ALT', 'AST', 'TBil']
+    ALT = extractFeature(data, 'ALT')
+    AST = extractFeature(data, 'AST')
+    TBil = extractFeature(data, 'TBil')
+
+
+
+
+    ALT.to_csv(outfile, sep="\t", index=False)
+
+
+
+if __name__ == '__main__':
+    # summaryTable('../data/3rd-meeting.ALT-AST.data.txt', '../output/3rd-meeting.processedData.txt')
+    summaryTable('../data/2019.09.rawData.txt', '../output/2019.09.summaryTable.txt')

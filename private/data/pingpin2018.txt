@@ -1,0 +1,2130 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="statics/css/ss.css" type="text/css" rel="stylesheet" />
+<link href="statics/css/reset.css" rel="stylesheet" type="text/css" />
+<link href="statics/css/member.css" rel="stylesheet" type="text/css" />
+<link href="statics/css/table_form.css" rel="stylesheet" type="text/css" />
+
+<link href="statics/css/zh-cn-system.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="statics/js/jquery.min.js"></script>
+<script type="text/javascript" src="statics/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="statics/js/member_common.js"></script>
+<style type="text/css">
+.disa {
+	color: #CCC;
+}
+</style>
+
+<title>查看公示</title>
+<!--[if IE 6]>
+		<script src="statics/js/js/pngAlaph.js"></script>
+		<script>
+			DD_belatedPNG.fix('img,.conleft,.denglv,.dh ul li.geren,.rg_top,.rg_top ul li.menu_bg,.rg_bottom');
+		</script>
+<![endif]-->
+<script type="text/javascript">
+<!--
+	var charset = 'utf-8';
+	var uploadurl = 'uploadfile/';
+//-->
+</script>
+<link href="statics/css/dialog.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript"
+	src="statics/js/dialog.js"></script>
+<script language="javascript" type="text/javascript"
+	src="statics/js/content_addtop.js"></script>
+<style type="text/css">
+span .cat {
+	display: inline-block;
+	margin-top: 10px;
+	margin-left: 10px;
+	height: 24px;
+	padding: 3px;
+	text-align: center;
+	text-decoration: none;
+	border: solid thin #ccc;
+}
+
+.bb a:hover {
+	<!--background-image: url(statics/images/bnt_a_cjhy.jpg);-->
+	height: 22px;
+	width: 72px;
+	text-decoration: none;
+}
+
+span .selected {
+	display: inline-block;
+	margin-top: 10px;
+	margin-left: 10px;
+	height: 26px;
+	padding: 3px;
+	text-align: center;
+	text-decoration: none;
+	border: solid 2px #999;
+}
+
+span .subselected {
+	font-size: 12px;
+	font-weight: bold;
+	color: #09F;
+}
+</style>
+</head>
+
+<body>
+	<img src="statics/images/processing.gif" id='loading'
+		style="position: absolute; top: 200px; left: 50%; z-index: 10; display: none;"></img>
+	<div class="bg">
+		<div class="mian1">
+			<div class="contion">
+				<style>
+#logo_name{
+	font-size: 20px;
+	color: #FFF;
+	font-weight: bold;
+}
+</style>
+
+<div class="conleft">
+	<div class="logo" id='logo_name'>
+		<img src="statics/images/mimages/logo.png" width="52" height="48" />  评审系统
+	</div>
+	<div class="denglv">
+		<div class="touxiang">
+			<div class="tx_tu">
+				<img src="statics/images/mimages/touxiang.png" width="32" height="32" />
+			</div>
+			<div class="dl_xx">
+				<p>您好 吴杨</p>
+				<p>
+					<a href="./index.php?m=member&c=index&a=logout">注销</a>
+				</p>
+			</div>
+
+		</div>
+	</div>
+	<div class="dh">
+		<ul>
+			<li  class="hy_tu">
+				<span>
+					<a href="index.php?m=member&c=manage&a=system_use_list">申请填报</a>
+				</span>
+			</li>
+			<li  class="tubiao daohang_bg" >
+				<span>
+					<a href="index.php?m=member&c=manage&a=show_results_list">材料公示</a>
+				</span>
+			</li>
+					</ul>
+	</div>
+	<div class="left_tu3"></div>
+</div>
+				<div class="conright">
+					<div class="rg_top">
+	<ul>
+					</ul>
+</div>
+<script>
+/*	$(function(){
+		resize();
+		$(window).resize(function(){resize();});
+	});
+	function resize()
+	{
+		$('.bg').height($(window).height());
+	}
+	*/
+</script>					<div class="rg_cont">
+						<div class="kongtiao">
+							<a href="index.php?m=member&c=manage&a=show_results_list">材料公示</a> > <a href="#">" 2018年岗位评聘" 的公示</a>
+						</div>
+						<div class="rg_neirong">
+							<div class="content" style="min-height: 600px">
+
+								<form method='post'	action="index.php?m=member&c=manage&a=show_results&u_id=9" style="text-align: right; padding-top: 10px; padding-right: 20px;">
+									<span>
+
+										<label>关键词:</label>
+										<input type="text" name="key_words" value="" class="input-focus" style="height:22px;"/>
+										<input type="submit" value="搜索" style="height: 28px; width: 50px; cursor: pointer;" />
+									</span>
+								</form>
+
+								<form name="myform" id="myform" action="" method="post" >
+									<div class="biaokuai">
+										<div class="kaihui_list ">
+											<table width="100%" border="0" cellspacing="0" cellpadding="0">
+												<thead>
+													<tr class="ls_title">
+														<th width="70" height="33" bgcolor="#ecf4f7">序号</th>
+																																																								<th width="100" align="center" bgcolor="#ecf4f7">部门 </th>
+																																																								<th width="100" align="center" bgcolor="#ecf4f7"> 姓名 </th>
+																																																								<th width="100" align="center" bgcolor="#ecf4f7">现任岗位属性 </th>
+																																																								<th width="100" align="center" bgcolor="#ecf4f7">现任岗位 </th>
+																																																								<th width="100" align="center" bgcolor="#ecf4f7">任职时间 </th>
+																																																																																																		<th width="100" align="center" bgcolor="#ecf4f7">申报岗位 </th>
+
+														<th width="80" align="center" bgcolor="#ecf4f7">审核结果</th>
+														<th width="80" align="center" bgcolor="#ecf4f7">申请资料</th>
+													</tr>
+												</thead>
+												<tbody>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">1</td>
+																																																								<td align="center">先进计算机系统研究中心</td>
+																																																								<td align="center">张帆</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">助理工程师一级</td>
+																																																								<td align="center">2016-07-05</td>
+																																																																																																		<td align="center">工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=376&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">2</td>
+																																																								<td align="center">计算机应用研究中心</td>
+																																																								<td align="center">于雷</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">工程师一级</td>
+																																																								<td align="center">2010年九月</td>
+																																																																																																		<td align="center">高级工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=377&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">3</td>
+																																																								<td align="center">智能处理器研究中心</td>
+																																																								<td align="center">杜子东</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">助理研究员一级</td>
+																																																								<td align="center">2016-07-05</td>
+																																																																																																		<td align="center">副研究员三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=378&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">4</td>
+																																																								<td align="center">智能信息处理重点实验室</td>
+																																																								<td align="center">敖翔</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">助理研究员一级</td>
+																																																								<td align="center">2015-07-03</td>
+																																																																																																		<td align="center">副研究员三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=379&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">5</td>
+																																																								<td align="center">无线通信技术研究中心</td>
+																																																								<td align="center">王园园</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">助理研究员一级</td>
+																																																								<td align="center">2016-07-07</td>
+																																																																																																		<td align="center">副研究员三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=380&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">6</td>
+																																																								<td align="center">泛在计算系统研究中心</td>
+																																																								<td align="center">罗海勇</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">副研究员二级</td>
+																																																								<td align="center">2008-04-01</td>
+																																																																																																		<td align="center">正高级工程师四级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=381&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">7</td>
+																																																								<td align="center">网络数据科学与技术重点实验室</td>
+																																																								<td align="center">杜漫</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">助理工程师一级</td>
+																																																								<td align="center">2016-07-12</td>
+																																																																																																		<td align="center">工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=382&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">8</td>
+																																																								<td align="center">网络数据科学与技术重点实验室  </td>
+																																																								<td align="center">陈欣洁</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">助理工程师一级</td>
+																																																								<td align="center">2016-07-12</td>
+																																																																																																		<td align="center">工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=383&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">9</td>
+																																																								<td align="center">计算机体系结构国家重点实验室</td>
+																																																								<td align="center">王智义</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">工程师三级</td>
+																																																								<td align="center">2015-09-30</td>
+																																																																																																		<td align="center">工程师一级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=384&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">10</td>
+																																																								<td align="center">计算机应用中心</td>
+																																																								<td align="center">胡斌</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">工程师二级</td>
+																																																								<td align="center">2015-09-30</td>
+																																																																																																		<td align="center">工程师一级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=385&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">11</td>
+																																																								<td align="center">高通量计算机研究中心</td>
+																																																								<td align="center">马丽娜</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">助理工程师一级</td>
+																																																								<td align="center">2016-07-04</td>
+																																																																																																		<td align="center">工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=386&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">12</td>
+																																																								<td align="center">网络数据科学与技术重点实验室</td>
+																																																								<td align="center">陈翠婷</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">助理工程师一级</td>
+																																																								<td align="center">2016-07-06</td>
+																																																																																																		<td align="center">工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=387&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">13</td>
+																																																								<td align="center">高通量计算机研究中心</td>
+																																																								<td align="center">叶笑春</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">副研究员三级</td>
+																																																								<td align="center">2014-10-01</td>
+																																																																																																		<td align="center">副研究员一级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=389&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">14</td>
+																																																								<td align="center">计算机应用研究中心</td>
+																																																								<td align="center">张程</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">高级工程师三级</td>
+																																																								<td align="center">2014-09-20</td>
+																																																																																																		<td align="center">高级工程师二级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=390&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">15</td>
+																																																								<td align="center">高通量</td>
+																																																								<td align="center">王晨辉</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">工程师三级</td>
+																																																								<td align="center">2011-06-05</td>
+																																																																																																		<td align="center">工程师一级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=391&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">16</td>
+																																																								<td align="center">科研支撑中心</td>
+																																																								<td align="center">李俊凤</td>
+																																																								<td align="center">支撑</td>
+																																																								<td align="center">馆员（编辑）一级</td>
+																																																								<td align="center">2000</td>
+																																																																																																		<td align="center">副研究馆员（副编审）三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=392&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">17</td>
+																																																								<td align="center">高通量计算机研究中心</td>
+																																																								<td align="center">姜志颖</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">工程师二级</td>
+																																																								<td align="center">2017-9</td>
+																																																																																																		<td align="center">工程师一级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=393&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">18</td>
+																																																								<td align="center">计算机应用研究中心</td>
+																																																								<td align="center">苏晓玉</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">助理工程师一级</td>
+																																																								<td align="center">2016-04-06</td>
+																																																																																																		<td align="center">工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=394&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">19</td>
+																																																								<td align="center">泛在计算系统研究中心</td>
+																																																								<td align="center">谷洋</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">助理研究员一级</td>
+																																																								<td align="center">2016-07-05</td>
+																																																																																																		<td align="center">副研究员三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=395&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">20</td>
+																																																								<td align="center">中科院网络数据科学与技术重点实验室</td>
+																																																								<td align="center">兰艳艳</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">副研究员二级</td>
+																																																								<td align="center">2013-09-01</td>
+																																																																																																		<td align="center">研究员四级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=396&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">21</td>
+																																																								<td align="center">计算机应用研究中心</td>
+																																																								<td align="center">刘延嘉</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">工程师二级</td>
+																																																								<td align="center">2015-07-23</td>
+																																																																																																		<td align="center">工程师一级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=397&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">22</td>
+																																																								<td align="center">专项技术研究中心</td>
+																																																								<td align="center">范鑫鑫</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">助理研究员一级</td>
+																																																								<td align="center">2017-04-01</td>
+																																																																																																		<td align="center">副研究员三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=398&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">23</td>
+																																																								<td align="center">计算机应用研究中心</td>
+																																																								<td align="center">唐宏伟</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">高级工程师三级</td>
+																																																								<td align="center">2016-10-08</td>
+																																																																																																		<td align="center">高级工程师二级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=399&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">24</td>
+																																																								<td align="center">科研处</td>
+																																																								<td align="center">姚卓</td>
+																																																								<td align="center">管理</td>
+																																																								<td align="center">十级职员</td>
+																																																								<td align="center">2017-07-17</td>
+																																																																																																		<td align="center">九级职员</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=400&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">25</td>
+																																																								<td align="center">网络数据科学与技术重点实验室</td>
+																																																								<td align="center">郭岩</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">高级工程师三级</td>
+																																																								<td align="center">2015-10-20</td>
+																																																																																																		<td align="center">高级工程师二级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=401&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">26</td>
+																																																								<td align="center">高通量计算机研究中心</td>
+																																																								<td align="center">郭南</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">助理研究员二级</td>
+																																																								<td align="center">2017-07-17</td>
+																																																																																																		<td align="center">助理研究员一级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=402&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">27</td>
+																																																								<td align="center">无线通信技术研究中心</td>
+																																																								<td align="center">张新宇</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">助理工程师一级</td>
+																																																								<td align="center">2015-10-08</td>
+																																																																																																		<td align="center">工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=403&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">28</td>
+																																																								<td align="center">网络数据科学与技术重点实验室</td>
+																																																								<td align="center">王赛</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">助理工程师一级</td>
+																																																								<td align="center">2016年4月</td>
+																																																																																																		<td align="center">工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=404&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">29</td>
+																																																								<td align="center">网络数据科学与技术重点实验室</td>
+																																																								<td align="center">张怀博</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">助理工程师一级</td>
+																																																								<td align="center">2016-07-20</td>
+																																																																																																		<td align="center">工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=405&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">30</td>
+																																																								<td align="center">高性能计算机研究中心</td>
+																																																								<td align="center">刘瑶</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">工程师三级</td>
+																																																								<td align="center">2016-09-15</td>
+																																																																																																		<td align="center">工程师二级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=406&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">31</td>
+																																																								<td align="center">高性能计算机研究中心</td>
+																																																								<td align="center">邵恩</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">工程师二级</td>
+																																																								<td align="center">2016-09-15</td>
+																																																																																																		<td align="center">工程师一级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=408&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">32</td>
+																																																								<td align="center">无线通信技术研究中心</td>
+																																																								<td align="center">孙刚</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">工程师一级</td>
+																																																								<td align="center">2013年九月</td>
+																																																																																																		<td align="center">高级工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=409&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">33</td>
+																																																								<td align="center">无线通信技术研究中心</td>
+																																																								<td align="center">刘清华</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">工程师二级</td>
+																																																								<td align="center">2015-09-30</td>
+																																																																																																		<td align="center">工程师一级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=410&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">34</td>
+																																																								<td align="center">网络数据科学与技术重点实验室</td>
+																																																								<td align="center">孙晓茜</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">助理研究员一级</td>
+																																																								<td align="center">2016-06-01</td>
+																																																																																																		<td align="center">副研究员三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=411&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">35</td>
+																																																								<td align="center">网络数据科学与技术重点实验</td>
+																																																								<td align="center">王永庆</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">助理研究员二级</td>
+																																																								<td align="center">2017-07-03</td>
+																																																																																																		<td align="center">助理研究员一级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=412&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">36</td>
+																																																								<td align="center">高通量计算机研究中心</td>
+																																																								<td align="center">李文明</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">助理研究员二级</td>
+																																																								<td align="center">2016-07-06</td>
+																																																																																																		<td align="center">副研究员三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=413&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">37</td>
+																																																								<td align="center">网络数据</td>
+																																																								<td align="center">刘盛华</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">副研究员三级</td>
+																																																								<td align="center">2014-09-30</td>
+																																																																																																		<td align="center">副研究员一级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=414&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">38</td>
+																																																								<td align="center">先进计算机系统研究中心</td>
+																																																								<td align="center">张钊</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">助理工程师一级</td>
+																																																								<td align="center">2016-04-06</td>
+																																																																																																		<td align="center">工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=415&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">39</td>
+																																																								<td align="center">网络数据科学与技术重点实验室</td>
+																																																								<td align="center">赵岭</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">工程师二级</td>
+																																																								<td align="center">2016-10-10</td>
+																																																																																																		<td align="center">工程师一级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=416&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">40</td>
+																																																								<td align="center">智能信息处理重点实验室</td>
+																																																								<td align="center">何明捷</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">工程师三级</td>
+																																																								<td align="center">2016-09-30</td>
+																																																																																																		<td align="center">工程师二级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=417&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">41</td>
+																																																								<td align="center">高通量计算机研究中心</td>
+																																																								<td align="center">曹华伟</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">助理研究员二级</td>
+																																																								<td align="center">2017-07-11</td>
+																																																																																																		<td align="center">助理研究员一级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=418&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">42</td>
+																																																								<td align="center">先进计算机系统研究中心</td>
+																																																								<td align="center">张焕</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">助理工程师一级</td>
+																																																								<td align="center">2016-07-18</td>
+																																																																																																		<td align="center">工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=419&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">43</td>
+																																																								<td align="center">先进计算机系统研究中心</td>
+																																																								<td align="center">胡文亚</td>
+																																																								<td align="center">支撑</td>
+																																																								<td align="center">助理工程师一级</td>
+																																																								<td align="center">2015-04-01</td>
+																																																																																																		<td align="center">工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=420&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">44</td>
+																																																								<td align="center">无线通信技术研究中心</td>
+																																																								<td align="center">卓蕊潋</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">工程师二级</td>
+																																																								<td align="center">2015-09-10</td>
+																																																																																																		<td align="center">工程师一级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=421&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">45</td>
+																																																								<td align="center">无线通信技术研究中心</td>
+																																																								<td align="center">乔霞</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">助理工程师一级</td>
+																																																								<td align="center">2016-07-20</td>
+																																																																																																		<td align="center">工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=422&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">46</td>
+																																																								<td align="center">前瞻研究实验室</td>
+																																																								<td align="center">张家琳</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">副研究员三级</td>
+																																																								<td align="center">2012-09-03</td>
+																																																																																																		<td align="center">研究员四级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=423&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">47</td>
+																																																								<td align="center">泛在计算中心</td>
+																																																								<td align="center">何婷婷</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">助理工程师一级</td>
+																																																								<td align="center">2016-07-12</td>
+																																																																																																		<td align="center">工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=424&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">48</td>
+																																																								<td align="center">无线通信技术研究中心</td>
+																																																								<td align="center">刘钰</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">工程师三级</td>
+																																																								<td align="center">2016-09-30</td>
+																																																																																																		<td align="center">工程师二级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=425&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">49</td>
+																																																								<td align="center">网络数据科学与技术重点实验室</td>
+																																																								<td align="center">吴昱明</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">工程师二级</td>
+																																																								<td align="center">2012-07-04</td>
+																																																																																																		<td align="center">高级工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=426&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">50</td>
+																																																								<td align="center">无线通信技术研究中心</td>
+																																																								<td align="center">马英矫</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">工程师二级</td>
+																																																								<td align="center">2015-09-30</td>
+																																																																																																		<td align="center">工程师一级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=427&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">51</td>
+																																																								<td align="center">前瞻研究实验室</td>
+																																																								<td align="center">夏时洪</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">研究员四级</td>
+																																																								<td align="center">2011-09-01</td>
+																																																																																																		<td align="center">研究员三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=429&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">52</td>
+																																																								<td align="center">网络数据科学与技术重点实验室</td>
+																																																								<td align="center">薛源海</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">工程师一级</td>
+																																																								<td align="center">2015-07-03</td>
+																																																																																																		<td align="center">高级工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=430&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">53</td>
+																																																								<td align="center">无线通信技术研究中心</td>
+																																																								<td align="center">陈洋</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">工程师二级</td>
+																																																								<td align="center">2017-09-01</td>
+																																																																																																		<td align="center">工程师一级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=431&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">54</td>
+																																																								<td align="center">智能处理器研究中心</td>
+																																																								<td align="center">张曦珊</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">助理研究员二级</td>
+																																																								<td align="center">2017.07.04</td>
+																																																																																																		<td align="center">助理研究员一级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=433&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">55</td>
+																																																								<td align="center">计算机应用研究中心</td>
+																																																								<td align="center">方金云</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">高级工程师一级</td>
+																																																								<td align="center">2001-10-05</td>
+																																																																																																		<td align="center">正高级工程师四级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=434&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">56</td>
+																																																								<td align="center">泛在计算</td>
+																																																								<td align="center">潘志文</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">助理研究员二级</td>
+																																																								<td align="center">2017-09-27</td>
+																																																																																																		<td align="center">助理研究员一级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=435&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">57</td>
+																																																								<td align="center">智能信息处理重点实验室</td>
+																																																								<td align="center">闵巍庆</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">助理研究员一级</td>
+																																																								<td align="center">2015-07-22</td>
+																																																																																																		<td align="center">副研究员三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=436&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">58</td>
+																																																								<td align="center">网络技术研究中心</td>
+																																																								<td align="center">焦臻桢</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">助理研究员一级</td>
+																																																								<td align="center">2015-03-31</td>
+																																																																																																		<td align="center">副研究员三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=437&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">59</td>
+																																																								<td align="center">先进计算机系统研究中心</td>
+																																																								<td align="center">张文力</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">助理研究员一级</td>
+																																																								<td align="center">2008-04-01</td>
+																																																																																																		<td align="center">高级工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=438&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">60</td>
+																																																								<td align="center">泛在计算系统研究中心</td>
+																																																								<td align="center">彭晓晖</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">助理研究员一级</td>
+																																																								<td align="center">2016-05-25</td>
+																																																																																																		<td align="center">副研究员三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=439&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">61</td>
+																																																								<td align="center">计算机体系结构国家重点实验室</td>
+																																																								<td align="center">叶靖</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">助理研究员一级</td>
+																																																								<td align="center">2014-07-14</td>
+																																																																																																		<td align="center">副研究员三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=440&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">62</td>
+																																																								<td align="center">高通量计算机研究中心</td>
+																																																								<td align="center">琚午阳</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">助理工程师一级</td>
+																																																								<td align="center">2017-01-12</td>
+																																																																																																		<td align="center">工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=441&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">63</td>
+																																																								<td align="center">先进计算机系统中心</td>
+																																																								<td align="center">刘兴武</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">副研究员三级</td>
+																																																								<td align="center">2009-10-01</td>
+																																																																																																		<td align="center">研究员四级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=442&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">64</td>
+																																																								<td align="center">网络数据科学与技术重点实验室</td>
+																																																								<td align="center">靳小龙</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">副研究员一级</td>
+																																																								<td align="center">2010-11-1</td>
+																																																																																																		<td align="center">研究员四级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=443&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">65</td>
+																																																								<td align="center">专项技术研究中心</td>
+																																																								<td align="center">李超-专项</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">助理研究员一级</td>
+																																																								<td align="center">2016-07</td>
+																																																																																																		<td align="center">高级工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=444&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">66</td>
+																																																								<td align="center">信息技术战略研究中心</td>
+																																																								<td align="center">范灵俊</td>
+																																																								<td align="center">支撑</td>
+																																																								<td align="center">工程师一级</td>
+																																																								<td align="center">2014-07-10</td>
+																																																																																																		<td align="center">高级工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=445&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">67</td>
+																																																								<td align="center">无线通信技术研究中心</td>
+																																																								<td align="center">张鹏涛</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">助理工程师一级</td>
+																																																								<td align="center">2016-07-12</td>
+																																																																																																		<td align="center">工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=446&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">68</td>
+																																																								<td align="center">无线通信技术研究中心</td>
+																																																								<td align="center">于文尧</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">助理工程师一级</td>
+																																																								<td align="center">2016-06-28</td>
+																																																																																																		<td align="center">工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=447&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">69</td>
+																																																								<td align="center">无线通信技术研究中心</td>
+																																																								<td align="center">刘林</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">助理工程师一级</td>
+																																																								<td align="center">2016-07-13</td>
+																																																																																																		<td align="center">工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=448&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">70</td>
+																																																								<td align="center">计算机体系结构国家重点实验室</td>
+																																																								<td align="center">鄢贵海</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">副研究员二级</td>
+																																																								<td align="center">2013-09-01</td>
+																																																																																																		<td align="center">研究员四级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=449&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">71</td>
+																																																								<td align="center">高通量计算机研究中心</td>
+																																																								<td align="center">葛长恩</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">助理工程师一级</td>
+																																																								<td align="center">2016-07-05</td>
+																																																																																																		<td align="center">工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=450&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">72</td>
+																																																								<td align="center">无线通信技术研究中心</td>
+																																																								<td align="center">常百灵</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">工程师三级</td>
+																																																								<td align="center">2016-09-01</td>
+																																																																																																		<td align="center">工程师二级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=451&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">73</td>
+																																																								<td align="center">专项技术研究中心</td>
+																																																								<td align="center">赵二虎</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">工程师一级</td>
+																																																								<td align="center">2012-12-01</td>
+																																																																																																		<td align="center">高级工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=452&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">74</td>
+																																																								<td align="center">前瞻研究实验室</td>
+																																																								<td align="center">李慧</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">助理研究员一级</td>
+																																																								<td align="center">2006-11-08</td>
+																																																																																																		<td align="center">副研究员三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=453&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">75</td>
+																																																								<td align="center">前瞻研究实验室</td>
+																																																								<td align="center">高科</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">副研究员三级</td>
+																																																								<td align="center">2013-09-01</td>
+																																																																																																		<td align="center">副研究员二级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=454&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">76</td>
+																																																								<td align="center">计算机应用研究中心</td>
+																																																								<td align="center">谭文婷</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">高级工程师三级</td>
+																																																								<td align="center">2016-10-01</td>
+																																																																																																		<td align="center">工程师二级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=455&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">77</td>
+																																																								<td align="center">智能处理器中心</td>
+																																																								<td align="center">郭崎</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">副研究员三级</td>
+																																																								<td align="center">2015-11-25</td>
+																																																																																																		<td align="center">副研究员二级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=456&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">78</td>
+																																																								<td align="center">前瞻研究实验室</td>
+																																																								<td align="center">毛天露</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">副研究员二级</td>
+																																																								<td align="center">2009-09-30</td>
+																																																																																																		<td align="center">副研究员一级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=457&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">79</td>
+																																																								<td align="center">网络数据科学与技术重点实验室</td>
+																																																								<td align="center">邱强</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">工程师一级</td>
+																																																								<td align="center">2015-07-15</td>
+																																																																																																		<td align="center">高级工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=458&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">80</td>
+																																																								<td align="center">前瞻研究实验室</td>
+																																																								<td align="center">吴杨</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">助理研究员二级</td>
+																																																								<td align="center">2016-11-01</td>
+																																																																																																		<td align="center">助理研究员一级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=459&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">81</td>
+																																																								<td align="center">高性能计算机研究中心</td>
+																																																								<td align="center">肖俊敏</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">助理研究员一级</td>
+																																																								<td align="center">2015-05-01</td>
+																																																																																																		<td align="center">副研究员三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=460&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">82</td>
+																																																								<td align="center">高通量计算机研究中心</td>
+																																																								<td align="center">李超2016</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">助理工程师一级</td>
+																																																								<td align="center">2016-07-06</td>
+																																																																																																		<td align="center">工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=461&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">83</td>
+																																																								<td align="center">高通量计算机研究中心</td>
+																																																								<td align="center">刘鹏博</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">助理工程师一级</td>
+																																																								<td align="center">2016-05-16</td>
+																																																																																																		<td align="center">工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=462&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">84</td>
+																																																								<td align="center">前瞻实验室</td>
+																																																								<td align="center">卜德超</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">助理研究员一级</td>
+																																																								<td align="center">2015-07-10</td>
+																																																																																																		<td align="center">副研究员三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=463&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">85</td>
+																																																								<td align="center">智能信息处理重点实验室</td>
+																																																								<td align="center">常虹</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">副研究员一级</td>
+																																																								<td align="center">2008-03-08</td>
+																																																																																																		<td align="center">研究员四级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=464&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">86</td>
+																																																								<td align="center">泛在</td>
+																																																								<td align="center">张磊</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">副研究员一级</td>
+																																																								<td align="center">2011-09-28</td>
+																																																																																																		<td align="center">研究员四级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=465&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">87</td>
+																																																								<td align="center">计算机应用研究中心</td>
+																																																								<td align="center">潘志伟</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">工程师三级</td>
+																																																								<td align="center">2016-09-30</td>
+																																																																																																		<td align="center">工程师二级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=466&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">88</td>
+																																																								<td align="center">无线通信技术研究中心</td>
+																																																								<td align="center">侯康</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">助理研究员一级</td>
+																																																								<td align="center">2015-09-16</td>
+																																																																																																		<td align="center">高级工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=467&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">89</td>
+																																																								<td align="center">计算机体系结构国家重点实验室</td>
+																																																								<td align="center">路航</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">助理研究员一级</td>
+																																																								<td align="center">2015-07-01</td>
+																																																																																																		<td align="center">副研究员三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=468&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">90</td>
+																																																								<td align="center">高性能计算机研究中心</td>
+																																																								<td align="center">张法</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">副研究员一级</td>
+																																																								<td align="center">2008-04</td>
+																																																																																																		<td align="center">研究员四级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=469&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">91</td>
+																																																								<td align="center">前瞻研究实验室</td>
+																																																								<td align="center">赵屹</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">副研究员一级</td>
+																																																								<td align="center">2008-10-01</td>
+																																																																																																		<td align="center">研究员四级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=470&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">92</td>
+																																																								<td align="center">网络数据科学与技术重点实验室</td>
+																																																								<td align="center">杨婧</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">工程师一级</td>
+																																																								<td align="center">2014-12-30</td>
+																																																																																																		<td align="center">高级工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=471&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">93</td>
+																																																								<td align="center">计算机体系结构国家重点实验室</td>
+																																																								<td align="center">向春阳</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">助理工程师一级</td>
+																																																								<td align="center">2016-07-01</td>
+																																																																																																		<td align="center">工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=472&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">94</td>
+																																																								<td align="center">智能信息重点实验室</td>
+																																																								<td align="center">罗平</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">副研究员一级</td>
+																																																								<td align="center">2014-02-28</td>
+																																																																																																		<td align="center">研究员四级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=473&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">95</td>
+																																																								<td align="center">无线通信技术研究中心</td>
+																																																								<td align="center">韩娟</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">副研究员三级</td>
+																																																								<td align="center">2012-09-07</td>
+																																																																																																		<td align="center">副研究员一级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=474&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">96</td>
+																																																								<td align="center">先进计算机系统研究中心</td>
+																																																								<td align="center">王磊</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">高级工程师三级</td>
+																																																								<td align="center">2011-09-01</td>
+																																																																																																		<td align="center">高级工程师二级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=475&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">97</td>
+																																																								<td align="center">高性能计算机研究中心</td>
+																																																								<td align="center">魏征</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">工程师二级</td>
+																																																								<td align="center">2017-09-30</td>
+																																																																																																		<td align="center">工程师一级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=476&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">98</td>
+																																																								<td align="center">高性能中心</td>
+																																																								<td align="center">臧大伟</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">助理研究员二级</td>
+																																																								<td align="center">2017-07-05</td>
+																																																																																																		<td align="center">助理研究员一级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=477&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">99</td>
+																																																								<td align="center">先进计算机系统研究中心</td>
+																																																								<td align="center">朱妤晴</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">助理研究员一级</td>
+																																																								<td align="center">2013-03-01</td>
+																																																																																																		<td align="center">副研究员三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=478&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">100</td>
+																																																								<td align="center">高性能计算机研究中心</td>
+																																																								<td align="center">赵地</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">副研究员三级</td>
+																																																								<td align="center">2015-01-02</td>
+																																																																																																		<td align="center">研究员四级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=479&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">101</td>
+																																																								<td align="center">网络技术研究中心</td>
+																																																								<td align="center">关洪涛</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">副研究员三级</td>
+																																																								<td align="center">2012-09-30</td>
+																																																																																																		<td align="center">正高级工程师四级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=480&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">102</td>
+																																																								<td align="center">前瞻研究实验室</td>
+																																																								<td align="center">赵强</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">助理研究员一级</td>
+																																																								<td align="center">2016-07-21</td>
+																																																																																																		<td align="center">副研究员三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=481&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">103</td>
+																																																								<td align="center">微处理器中心</td>
+																																																								<td align="center">赵莹</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">工程师一级</td>
+																																																								<td align="center">2010-07-01</td>
+																																																																																																		<td align="center">高级工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=482&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">104</td>
+																																																								<td align="center">高性能计算机研究中心</td>
+																																																								<td align="center">元国军</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">高级工程师三级</td>
+																																																								<td align="center">2016-10-01</td>
+																																																																																																		<td align="center">高级工程师二级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=483&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">105</td>
+																																																								<td align="center">前瞻研究实验室</td>
+																																																								<td align="center">曹娟</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">副研究员二级</td>
+																																																								<td align="center">2018-09-30</td>
+																																																																																																		<td align="center">研究员四级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=484&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">106</td>
+																																																								<td align="center">计算机体系结构国家重点实验室</td>
+																																																								<td align="center">赖远明</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">研究实习员一级</td>
+																																																								<td align="center">2016-07-12</td>
+																																																																																																		<td align="center">助理研究员三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=485&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">107</td>
+																																																								<td align="center">前瞻中心</td>
+																																																								<td align="center">韦伟</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">助理研究员二级</td>
+																																																								<td align="center">2016-09-01</td>
+																																																																																																		<td align="center">助理研究员一级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=486&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">108</td>
+																																																								<td align="center">泛在计算系统研究中心</td>
+																																																								<td align="center">刘宏</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">副研究员三级</td>
+																																																								<td align="center">2008年10月</td>
+																																																																																																		<td align="center">副研究员二级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=487&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">109</td>
+																																																								<td align="center">网络数据实验室</td>
+																																																								<td align="center">姬晓光</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">工程师二级</td>
+																																																								<td align="center">2013-08-27</td>
+																																																																																																		<td align="center">工程师一级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=488&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">110</td>
+																																																								<td align="center">先进计算机系统研究中心</td>
+																																																								<td align="center">常轶松</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">工程师一级</td>
+																																																								<td align="center">2014-10-01</td>
+																																																																																																		<td align="center">高级工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=489&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">111</td>
+																																																								<td align="center">高性能计算研究中心</td>
+																																																								<td align="center">郝昀超</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">助理工程师一级</td>
+																																																								<td align="center">2016-06-08</td>
+																																																																																																		<td align="center">工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=490&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">112</td>
+																																																								<td align="center">前瞻研究实验室</td>
+																																																								<td align="center">高林</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">副研究员三级</td>
+																																																								<td align="center">2016-09-30</td>
+																																																																																																		<td align="center">副研究员二级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=492&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">113</td>
+																																																								<td align="center">网络技术研究中心</td>
+																																																								<td align="center">郑红霞</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">工程师一级</td>
+																																																								<td align="center">2004-06-01</td>
+																																																																																																		<td align="center">高级工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=493&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">114</td>
+																																																								<td align="center">无线通信技术研究中心</td>
+																																																								<td align="center">张玉成</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">高级工程师二级</td>
+																																																								<td align="center">2016-09-30</td>
+																																																																																																		<td align="center">高级工程师一级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=494&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">115</td>
+																																																								<td align="center">智能信息处理重点实验室</td>
+																																																								<td align="center">韩琥</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">副研究员三级</td>
+																																																								<td align="center">2015-5-28</td>
+																																																																																																		<td align="center">研究员四级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=495&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">116</td>
+																																																								<td align="center">智能处理器研究中心</td>
+																																																								<td align="center">罗韬</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">助理研究员三级</td>
+																																																								<td align="center">2016-4-1</td>
+																																																																																																		<td align="center">高级工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=496&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">117</td>
+																																																								<td align="center">网络技术研究中心</td>
+																																																								<td align="center">黄昆</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">副研究员三级</td>
+																																																								<td align="center">2015-10-01</td>
+																																																																																																		<td align="center">副研究员二级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=497&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">118</td>
+																																																								<td align="center">前瞻实验室</td>
+																																																								<td align="center">肖立</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">副研究员三级</td>
+																																																								<td align="center">2017-06-16</td>
+																																																																																																		<td align="center">副研究员二级</td>
+																												<td align="center">
+														 一审未通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=498&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">119</td>
+																																																								<td align="center">无线通信技术研究中心</td>
+																																																								<td align="center">萧放</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">助理研究员一级</td>
+																																																								<td align="center">2016-07-05</td>
+																																																																																																		<td align="center">副研究员三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=499&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">120</td>
+																																																								<td align="center">先进计算机系统研究中心</td>
+																																																								<td align="center">蒋德钧</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">副研究员三级</td>
+																																																								<td align="center">2015-10-01</td>
+																																																																																																		<td align="center">副研究员二级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=500&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">121</td>
+																																																								<td align="center">技术发展处</td>
+																																																								<td align="center">季统凯</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">高级工程师三级</td>
+																																																								<td align="center">2008-10-01</td>
+																																																																																																		<td align="center">正高级工程师四级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=502&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">122</td>
+																																																								<td align="center">无线通信技术研究中心</td>
+																																																								<td align="center">高明晋</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">助理研究员二级</td>
+																																																								<td align="center">2017-07-10</td>
+																																																																																																		<td align="center">助理研究员一级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=503&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">123</td>
+																																																								<td align="center">无线通信技术研究中心</td>
+																																																								<td align="center">田霖</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">副研究员二级</td>
+																																																								<td align="center">2013-09-01</td>
+																																																																																																		<td align="center">研究员四级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=504&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">124</td>
+																																																								<td align="center">专项技术研究中心</td>
+																																																								<td align="center">江昱</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">助理工程师一级</td>
+																																																								<td align="center">2015-10-16</td>
+																																																																																																		<td align="center">工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=505&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">125</td>
+																																																								<td align="center">网络数据科学与技术重点实验室</td>
+																																																								<td align="center">吴琼</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">助理研究员一级</td>
+																																																								<td align="center">2013-02-01</td>
+																																																																																																		<td align="center">高级工程师三级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=506&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">126</td>
+																																																								<td align="center">先进计算机系统研究中心</td>
+																																																								<td align="center">张科</td>
+																																																								<td align="center">工程</td>
+																																																								<td align="center">高级工程师三级</td>
+																																																								<td align="center">2014-09-30</td>
+																																																																																																		<td align="center">高级工程师一级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=507&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">127</td>
+																																																								<td align="center">泛在计算系统研究中心</td>
+																																																								<td align="center">李栋</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">副研究员二级</td>
+																																																								<td align="center">2012-09-30</td>
+																																																																																																		<td align="center">副研究员一级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=508&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">128</td>
+																																																								<td align="center">智能处理器研究中心</td>
+																																																								<td align="center">刘少礼</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">副研究员三级</td>
+																																																								<td align="center">2016-09-30</td>
+																																																																																																		<td align="center">副研究员二级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=509&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+
+													<tr style="border-top: 1px solid #DDDDDD;">
+														<td height="40" align="center">129</td>
+																																																								<td align="center">无线通信技术研究中心</td>
+																																																								<td align="center">石晶林</td>
+																																																								<td align="center">研究</td>
+																																																								<td align="center">研究员三级</td>
+																																																								<td align="center">2012-09-01</td>
+																																																																																																		<td align="center">研究员二级</td>
+																												<td align="center">
+														 一审通过 <br/>二审待审														</td>
+														<td align="center">
+															<a href="index.php?m=member&c=manage&a=show_result_detail&id=510&u_id=9" style="color: #4483AC">详细资料</a>
+														</td>
+													</tr>
+																									</tbody>
+											</table>
+
+											<div id="pages"></div>
+
+										</div>
+										<span class="o1"></span><span class="o2"></span><span class="o3"></span><span class="o4"></span>
+									</div>
+								</form>
+							</div>
+							<span class="o1"></span><span class="o2"></span><span class="o3"></span><span class="o4"></span>
+						</div>
+					</div>
+				</div>
+				<div class="rg_bottom"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

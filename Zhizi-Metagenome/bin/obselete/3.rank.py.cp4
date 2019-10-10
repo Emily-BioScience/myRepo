@@ -1,0 +1,158 @@
+# -*- coding UTF-8 -*-
+import numpy as np
+import pandas as pd
+
+
+def extractFeature(data, feature):
+    # extract each feature
+    sub = data.pivot(index='Animal', columns='Time', values=feature)
+    sub.columns = feature + '.' + sub.columns
+    # add animal name from index information
+    newcol = sub.columns.insert(0, 'Animal')
+    sub = sub.reindex(columns=newcol, fill_value=0)
+    sub['Animal'] = sub.index
+    # add group name from animal information
+    newcol = sub.columns.insert(0, 'Group')
+    sub = sub.reindex(columns=newcol, fill_value=0)
+    sub['Group'] = np.array(pd.Series(sub.index).str.split('-', expand=True)[0])
+    # rank for each time point
+    for i in range(2, sub.columns.size):  # 0: Group: 1: Animal: 2-n: data
+        colname = sub.columns[i]
+        colrank = colname.replace('.', '.rank.')
+        sub[colrank] = sub[colname].groupby(sub['Group']).rank()
+    # remove index name
+    sub.index = range(sub.index.shape[0])
+    return(sub)
+
+
+def addMeanAndSD(summary, tag):
+    for i in range(2, summary.columns.size, 3):
+        # select one feature with three time points
+        timeseries = summary[summary.columns[i:i+3]]
+        # calculate mean
+        colname = summary.columns[i].replace(tag, '.mean')
+        newcol = summary.columns.insert(-1, colname)
+        summary.reindex(columns=newcol, fill_value=0)
+        summary[colname] = timeseries.mean(1)
+        # calculate sd
+        colname = summary.columns[i].replace(tag, '.sd')
+        newcol = summary.columns.insert(-1, colname)
+        summary.reindex(columns=newcol, fill_value=0)
+        summary[colname] = timeseries.std(1)
+    return(summary)
+
+
+def allAnimals(summary):
+    # remove missing values
+    useFeature = summary.columns[[3, 4, 9, 10]]  # 只看ALT和AST，只看48h和72h
+    subset = summary[(summary[useFeature[0]]>0) & (summary[useFeature[1]]>0) & (summary[useFeature[2]]>0) & (summary[useFeature[3]]>0)]
+    # print("Remove {} animals with missing values.".format(summary.shape[0] - subset.shape[0]))
+    # get mean rank
+    rankFeature = subset.columns[[6, 7, 12, 13]]  # 只看ALT和AST，只看48h和72h
+    newcol = subset.columns.insert(-1, 'rank')
+    subset.reindex(columns=newcol, fill_value=0)
+    subset.loc[:, 'rank'] = subset[rankFeature].mean(1)
+    # subset['rank'] = subset[rankFeature].mean(1)
+    # report all animals
+    outFeature = subset.columns[[0, 1, 2, 3, 4, 8, 9, 10, -1]]  # ALT和AST的值，及平均rank
+    report = subset[outFeature]
+    return(report)
+
+
+def selectAnimals(summary):
+    group = ['G', 'W', '1', '2', 'G1']  # 计入考量的组别，两次数据均支持
+    desc = summary.groupby(summary['Group']).describe()
+    summary['alt48q'] = ''
+    summary['alt72q'] = ''
+    summary['ast48q'] = ''
+    summary['ast72q'] = ''
+    summary['lowerThan25'] = 0
+    summary['higherThan75'] = 0
+    summary['percent'] = 0
+    summary['type'] = ''
+    # define cutoffs
+    num_cut = 1
+    low_cut = 30
+    high_cut = 70
+    for i in summary.index:
+        g, name, alt24, alt48, alt72, ast24, ast48, ast72, rank, alt48q, alt72q, ast48q, ast72q, lower, higher, p, type = summary.ix[i]
+        if g in group:  # 关心的组别
+            alt48q = desc[summary.columns[3]][['25%', '75%']]  # 分组计算25%和75%百分位数
+            alt72q = desc[summary.columns[4]][['25%', '75%']]  # 分组计算25%和75%百分位数
+            ast48q = desc[summary.columns[6]][['25%', '75%']]  # 分组计算25%和75%百分位数
+            ast72q = desc[summary.columns[7]][['25%', '75%']]  # 分组计算25%和75%百分位数
+            data = {'feature': ['alt48', 'alt72', 'ast48', 'ast72'],
+                    'value': [alt48, alt72, ast48, ast72],
+                    'low': [alt48q.ix[g][0], alt72q.ix[g][0], ast48q.ix[g][0], ast72q.ix[g][0]],
+                    'high': [alt48q.ix[g][1], alt72q.ix[g][1], ast48q.ix[g][1], ast72q.ix[g][1]]}
+            data = pd.DataFrame(data)
+            summary.loc[i, 'alt48q'] = "{}-{}".format(alt48q.ix[g][0], alt48q.ix[g][1])
+            summary.loc[i, 'alt72q'] = "{}-{}".format(alt72q.ix[g][0], alt72q.ix[g][1])
+            summary.loc[i, 'ast48q'] = "{}-{}".format(ast48q.ix[g][0], ast48q.ix[g][1])
+            summary.loc[i, 'ast72q'] = "{}-{}".format(ast72q.ix[g][0], ast72q.ix[g][1])
+            summary.loc[i, 'lowerThan25'] = sum(data['value']<data['low'])  # 计算4个值里，有几个小于25%分位数
+            summary.loc[i, 'higherThan75'] = sum(data['value']>data['high'])  # 计算4个值里，有几个大于75%分位数
+            summary.loc[i, 'percent'] = rank * 100 / desc[summary.columns[3]]['count'][g]  # 将rank转化到100%的尺度
+            # assign type
+            if summary.loc[i, 'lowerThan25'] > num_cut and summary.loc[i, 'higherThan75'] == 0 and summary.loc[i, 'percent'] < low_cut:
+                summary.loc[i, 'type'] = 'l'
+            elif summary.loc[i, 'higherThan75'] > num_cut and summary.loc[i, 'lowerThan25'] == 0 and summary.loc[i, 'percent'] > high_cut:
+                summary.loc[i, 'type'] = 'h'
+        else:
+            # print("skip line: {} {}.".format(g, name))
+            continue
+    # select and sort data
+    summary = summary[summary['type'] != '']
+    summary = summary.sort_values(by=['type', 'Group'], ascending=False)
+    return(summary)
+
+
+
+def dealWithData(summary, tag, tablefile, logfile, outfile):
+    # calculate mean and sd
+    summary = addMeanAndSD(summary, tag)
+    summary.to_csv(tablefile, sep="\t", index=False)
+    # remove missing values
+    summary = allAnimals(summary)
+    summary.to_csv(logfile, sep="\t", index=False)
+    # select by both value and rank
+    summary = selectAnimals(summary)
+    summary.to_csv(outfile, sep="\t", index=False)
+
+
+def selectSamples(infile, tablefile, logfile, outfile):
+    # read raw data
+    data = pd.read_csv(infile, sep="\t")
+    data.columns = ['Animal', 'Time', 'ALT', 'AST']
+    # extract features and merge summary table
+    ALT = extractFeature(data, 'ALT')
+    AST = extractFeature(data, 'AST')
+    summary = pd.merge(ALT, AST, how='left', on=['Group', 'Animal'])
+    # deal with Data
+    dealWithData(summary, '.0h', tablefile, logfile, outfile)  # 新版本，.0h后缀
+
+
+def selectSamplesNew(infile, tablefile, logfile, outfile):
+    # read raw data
+    data = pd.read_csv(infile, sep="\t")
+    data.columns = ['Animal', 'Time', 'ALT', 'AST', 'TBil']  # 新版本，添加TBil
+    # extract features and merge summary table
+    ALT = extractFeature(data, 'ALT')
+    AST = extractFeature(data, 'AST')
+    TBil = extractFeature(data, 'TBil')  # 新版本，添加TBil
+    summary = pd.merge(ALT, AST, how='left', on=['Group', 'Animal'])
+    summary = pd.merge(summary, TBil, how='left', on=['Group', 'Animal'])  # 新版本，添加TBil
+    # deal with Data
+    dealWithData(summary, '.24h', tablefile, logfile, outfile)  # 新版本，.24h后缀
+
+
+
+if __name__ == '__main__':
+    selectSamples('../data/3rd-meeting.ALT-AST.data.txt', '../output/3rd-meeting.summaryTable-new.txt', '../output/3rd-meeting.allSamples.txt', '../output/3rd-meeting.selectSamples.txt')
+    selectSamplesNew('../data/2019.09.rawData.txt', '../output/2019.09.summaryTable.txt', '../output/2019.09.allSamples.txt', '../output/2019.09.selectSamples.txt')
+
+    infile = '../data/2019.09.rawData.txt'
+    tablefile = '../output/2019.09.summaryTable.txt'
+    logfile = '../output/2019.09.allSamples.txt'
+    outfile = '../output/2019.09.selectSamples.txt'
+    tag = '.24h'

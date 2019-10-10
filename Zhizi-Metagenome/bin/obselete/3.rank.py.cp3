@@ -1,0 +1,100 @@
+# -*- coding UTF-8 -*-
+import numpy as np
+import pandas as pd
+
+
+def extractFeature(data, feature):
+    # extract each feature
+    sub = data.pivot(index='Animal', columns='Time', values=feature)
+    sub.columns = feature + '.' + sub.columns
+    # add animal name from index information
+    newcol = sub.columns.insert(0, 'Animal')
+    sub = sub.reindex(columns=newcol, fill_value=0)
+    sub['Animal'] = sub.index
+    # add group name from animal information
+    newcol = sub.columns.insert(0, 'Group')
+    sub = sub.reindex(columns=newcol, fill_value=0)
+    sub['Group'] = np.array(pd.Series(sub.index).str.split('-', expand=True)[0])
+    # rank for each time point
+    for i in range(2, sub.columns.size):  # 0: Group: 1: Animal: 2-n: data
+        colname = sub.columns[i]
+        colrank = colname.replace('.', '.rank.')
+        sub[colrank] = sub[colname].groupby(sub['Group']).rank()
+    # remove index name
+    sub.index = range(sub.index.shape[0])
+    return(sub)
+
+
+def addMeanAndSD(summary, tag):
+    for i in range(2, summary.columns.size, 3):
+        # select one feature with three time points
+        timeseries = summary[summary.columns[i:i+3]]
+        # calculate mean
+        colname = summary.columns[i].replace(tag, '.mean')
+        newcol = summary.columns.insert(summary.columns.size, colname)
+        summary.reindex(columns=newcol, fill_value=0)
+        summary[colname] = timeseries.mean(1)
+        # calculate sd
+        colname = summary.columns[i].replace(tag, '.sd')
+        newcol = summary.columns.insert(summary.columns.size, colname)
+        summary.reindex(columns=newcol, fill_value=0)
+        summary[colname] = timeseries.std(1)
+    return(summary)
+
+
+def selectAnimals(summary):
+    # get features for rank
+    useFeature = summary.columns[[3, 4, 9, 10]]  # 只看ALT和AST，只看48h和72h
+    rankFeature = summary.columns[[6, 7, 12, 13]]  # 只看ALT和AST，只看48h和72h
+    # remove missing values
+    select = summary[(summary[useFeature[0]]>0) & (summary[useFeature[1]]>0) & (summary[useFeature[2]]>0) & (summary[useFeature[3]]>0)]
+    print("Remove {} animals with missing values.".format(summary.shape[0] - select.shape[0]))
+    # get mean rank
+    newcol = summary.columns.insert(-1, 'rank')
+    select.reindex(columns=newcol, fill_value=0)
+    select['rank'] = summary[rankFeature].mean(1)  # 按行求平均
+    # report all animals
+
+    report = select.columns[[0, 1, 2, 3, 4, 8, 9, 10, -1]]
+    return(select)
+
+
+
+def selectSamples(infile, tablefile, outfile):
+    # read raw data
+    data = pd.read_csv(infile, sep="\t")
+    data.columns = ['Animal', 'Time', 'ALT', 'AST']
+    # extract features and merge summary table
+    ALT = extractFeature(data, 'ALT')
+    AST = extractFeature(data, 'AST')
+    summary = pd.merge(ALT, AST, how='left', on=['Group', 'Animal'])
+    # calculate mean and sd
+    summary = addMeanAndSD(summary, '.0h')
+    summary.to_csv(tablefile, sep="\t", index=False)
+    # select by both value and rank
+    summary = selectAnimals(summary)
+    summary.to_csv(outfile, sep="\t", index=False)
+
+
+def selectSamplesNew(infile, tablefile, outfile):
+    # read raw data
+    data = pd.read_csv(infile, sep="\t")
+    data.columns = ['Animal', 'Time', 'ALT', 'AST', 'TBil']  # 新版本，添加TBil
+    # extract features and merge summary table
+    ALT = extractFeature(data, 'ALT')
+    AST = extractFeature(data, 'AST')
+    TBil = extractFeature(data, 'TBil')  # 新版本，添加TBil
+    summary = pd.merge(ALT, AST, how='left', on=['Group', 'Animal'])
+    summary = pd.merge(summary, TBil, how='left', on=['Group', 'Animal'])  # 新版本，添加TBil
+    # calculate mean and sd,
+    summary = addMeanAndSD(summary, '.24h')
+    summary.to_csv(tablefile, sep="\t", index=False)
+    # select by both value and rank
+    summary = selectAnimals(summary)
+    summary.to_csv(outfile, sep="\t", index=False)
+
+
+
+if __name__ == '__main__':
+    selectSamples('../data/3rd-meeting.ALT-AST.data.txt', '../output/3rd-meeting.summaryTable-new.txt', '../output/3rd-meeting.selectSamples.txt')
+    selectSamplesNew('../data/2019.09.rawData.txt', '../output/2019.09.summaryTable.txt', '../output/2019.09.selectSamples.txt')

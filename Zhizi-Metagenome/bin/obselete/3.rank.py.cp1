@@ -1,0 +1,61 @@
+# -*- coding UTF-8 -*-
+import numpy as np
+import pandas as pd
+
+
+def summaryTable(infile, outfile):
+    with open(infile) as f:
+        out = ["Group\tComparison\tAnimal\tTime\tALT\tAST\tTBil"]
+        for line in f:
+            if "U/L" in line or "mol/L" in line:
+                continue  # skip header line
+
+            list = line.strip().split()
+            if len(list) == 5:  # 上一版是4，现在是5，加了总胆红素
+                animal, time, TBil, ALT, AST = list
+                group = animal.split("-")[0]   # ======== 无用
+                comparison = group + '-' + time   # ======== 无用
+                out.append("\t".join([group, comparison, animal, time, ALT, AST, TBil]))
+            else:
+                print(list, 'Error')
+                break
+
+        fh = open(outfile, 'w')
+        for infor in out:
+            fh.write(infor + "\n")
+
+
+def extractFeature(data, feature):
+    sub = data.pivot(index='Animal', columns='Time', values=feature)
+    sub.columns = feature + sub.columns
+    newcol = sub.columns.insert(0, 'Animal')
+    sub = sub.reindex(columns=newcol, fill_value=0)
+    sub['Animal'] = sub.index
+    newcol = sub.columns.insert(0, 'Group')
+    sub = sub.reindex(columns=newcol, fill_value=0)
+    sub['Group'] = sub['Animal'].str.split('-', expand=True)[0]
+    return(sub)
+
+
+def rankAnimals(infile, outfile):
+    data = pd.read_csv(infile, sep="\t")
+    ALT = extractFeature(data, 'ALT')
+
+    # ALT = data.pivot(index='Animal', columns='Time', values='ALT')
+    # ALT.columns = 'ALT.' + ALT.columns
+    # ALT.columns.insert(0, 'Group')
+    # ALT.columns.insert(0, 'Group')
+    #
+    # AST = data.pivot(index='Animal', columns='Time', values='AST')
+    # AST.columns = 'AST.' + AST.columns
+    #
+    # TBil = data.pivot(index='Animal', columns='Time', values='TBil')
+    # TBil.columns = 'TBil.' + TBil.columns
+
+
+
+
+if __name__ == '__main__':
+    # summaryTable('../data/3rd-meeting.ALT-AST.data.txt', '../output/3rd-meeting.processedData.txt')
+    summaryTable('../data/2019.09.rawData.txt', '../output/2019.09.processedData.txt')
+    rankAnimals('../output/2019.09.processedData.txt', '')

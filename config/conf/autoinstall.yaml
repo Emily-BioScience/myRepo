@@ -1,0 +1,46 @@
+ruamel.yaml:
+#    version:    0.16.1
+    usage:  decoding files in yaml format
+numpy:
+#    version:    1.16.3
+    usage:   N-dimensional data computing
+matplotlib:
+#    version:    3.0.3
+    usage:   2-dimensional data visualization
+pillow:
+    usage:  imgae processing
+    alias:  PIL
+sklearn:
+    usage:  machine learning and data mining, Scikit-Learn
+requests:
+#    version:    2.21.0
+    usage:  HTTP acess and web spider
+jieba:
+#    version:    0.39
+    usage:  word segmentation for Chinese
+beautifulsoup4:
+#    version:    4.8.0
+    usage:  decoding HTML and XML
+python-docx:
+    usage:  dealing with doc files
+PyPDF2:
+    usage:  dealing with pdf files
+ntlk:
+    usage:  natural language processing
+# wheel   # python第三方库文件打包工具
+# pyinstaller # 打包python源文件为可执行文件
+# django  # python最流行的web开发框架
+# flask   # 轻量级web开发框架
+# werobot # 微信机器人开发框架
+# sympy   # 数学符号计算工具
+# pandas  # 高效的数据分析和计算
+# networkx    # 复杂网络和图结构的建模和分析
+# pyqt5   # 基于Qt的专业级GUI开发框架
+# pyopengl    # 多平台opengl开发接口
+# pypdf2  # PDF文件内容提取及处理
+# docopt  # python命令行解析
+# pygame  # 简单小游戏开发框架
+#
+# 批量安装库，需要安装哪个，在上面添加YAML配置行，version信息是optional的
+#       如果系统尚未安装，则启动自动安装
+#       如果系统安装的版本比指定的较低，则启动升级安装
