@@ -81,6 +81,7 @@ def dimension_reduction_task(data, target):
     reconData = (finalData * selectVec) + data.mean(axis=0)  # 还原到原始空间
     print("手动pca，与sklearn库算出来的总体差别：{:.3f}".format((finalData - pca).sum()))
     print("手动pca还原出的data，与原始data的总体差别：{:.3f}".format((reconData - data).sum()))
+    # 参考 https://www.cnblogs.com/clnchanpin/p/7199713.html
 
 
     a, b = np.linalg.eig(covmatrix)
