@@ -1,34 +1,44 @@
 # -*- coding UTF-8 -*-
 import numpy as np
+from sklearn import metrics
 from sklearn.datasets import load_iris
 from sklearn.cluster import KMeans
 from sklearn.cluster import DBSCAN
 from sklearn.decomposition import PCA
-import matplotlib as mpl
 import matplotlib.pyplot as plt
 
+plt.get_backend()
 
 
 def clustering_task(data, target):
+    # pca for plotting
+    pcaModel = PCA(n_components=2)
+    pca = pcaModel.fit_transform(data)
+
     # kmeans
-    estimator = KMeans(n_clusters=2)
-    kmeans = estimator.fit_predict(data)
-    # pca
-    estimator2 = PCA(n_components=2)
-    pca = estimator2.fit_transform(data)
-    # plot
+    kmeansModel = KMeans(n_clusters=2)
+    kmeans = kmeansModel.fit_predict(data)
+    print(">>> Kmeans\nSilhouette Coefficient: {:.3f}".format(metrics.silhouette_score(data, kmeans)))
+    print("Accuracy score: {:.3f}\n".format(metrics.accuracy_score(target, kmeans)))
     out = np.insert(pca, 2, values=kmeans, axis=1)
     plt.figure()
     plt.scatter(out[..., 0], out[..., 1], c=out[..., 2])
     # plt.show()
     plt.savefig('output/3.1.kmeans.jpg', dpi=600)
 
+    # DBSCAN
+    dbscanModel = DBSCAN(eps = 1, min_samples = 10)
+    dbscan = dbscanModel.fit_predict(data)
+    print(">>> DBSCAN\nSilhouette Coefficient: {:.3f}".format(metrics.silhouette_score(data, dbscan)))
+    print("Accuracy score: {:.3f}\n".format(metrics.accuracy_score(target, dbscan)))
+    out = np.insert(pca, 2, values=dbscan, axis=1)
+    plt.figure()
+    plt.scatter(out[..., 0], out[..., 1], c=out[..., 2])
+    # plt.show()
+    plt.savefig('output/3.1.dbscan.jpg', dpi=600)
 
-    # test github
 
-
-
-def dimension_reduction_task():
+def dimension_reduction_task(data, target):
     pass
 
 
