@@ -23,10 +23,9 @@ def clustering_task(data, target):
     print(">>> Kmeans\nSilhouette Coefficient: {:.3f}".format(metrics.silhouette_score(data, kmeans)))
     print("Accuracy score: {:.3f}\n".format(metrics.accuracy_score(target, kmeans)))
     out = np.insert(pca, 2, values=kmeans, axis=1)
-    plt.figure()
+    plt.subplot(3, 2, 1)
+    plt.title('K-means clustering')
     plt.scatter(out[..., 0], out[..., 1], c=out[..., 2])
-    # plt.show()
-    plt.savefig('output/3.1.kmeans.jpg', dpi=600)
 
     # DBSCAN
     dbscanModel = DBSCAN(eps = 1, min_samples = 10)
@@ -34,19 +33,18 @@ def clustering_task(data, target):
     print(">>> DBSCAN\nSilhouette Coefficient: {:.3f}".format(metrics.silhouette_score(data, dbscan)))
     print("Accuracy score: {:.3f}\n".format(metrics.accuracy_score(target, dbscan)))
     out = np.insert(pca, 2, values=dbscan, axis=1)
-    plt.figure()
+    plt.subplot(3, 2, 2)
+    plt.title('DBSCAN clustering')
     plt.scatter(out[..., 0], out[..., 1], c=out[..., 2])
-    # plt.show()
-    plt.savefig('output/3.1.dbscan.jpg', dpi=600)
 
     # test roc curve, only allow 2 classes
     fpr, tpr, thresholds = metrics.roc_curve(dbscan, kmeans)
-    plt.figure()
+    plt.subplot(3, 2, 5)
+    plt.title('ROC curve')
     plt.plot(tpr, fpr)
-    plt.savefig('output/3.1.roc-curve.pseudo.jpg', dpi=600)
 
 
-def plot_three_group(x, y, file):
+def plot_three_group(x, y, number, title):
     # plot
     red_x, red_y = [], []
     blue_x, blue_y = [], []
@@ -61,18 +59,18 @@ def plot_three_group(x, y, file):
         else:
             green_x.append(x[i][0])
             green_y.append(x[i][1])
-    plt.figure()
+    plt.subplot(3, 2, number)
+    plt.title(title)
     plt.scatter(red_x, red_y, c='r', marker='x')
     plt.scatter(blue_x, blue_y, c='b', marker='D')
     plt.scatter(green_x, green_y, c='g', marker='.')
-    plt.savefig(file, dpi=600)
 
 
 def dimension_reduction_task(data, target):
     # pca for plotting
     pcaModel = PCA(n_components=2)
     pca = pcaModel.fit_transform(data)
-    plot_three_group(pca, target, 'output/3.1.pca.jpg')
+    plot_three_group(pca, target, 4, 'PCA clustering')
     # pca manually
     dataAdjust = data - data.mean(axis=0)  # 数据中心化
     covmatrix = np.cov(dataAdjust.T)  # 求协方差矩阵
@@ -94,7 +92,7 @@ def dimension_reduction_task(data, target):
     H = nmf.components_  # coefficient matrix: k groups * n samples
     scaleH = H / H.sum(axis=0)  # 用列和将H矩阵scale到0-1之间，即每个样本，在k个groups中的weights，合起来等于1
     cluster = scaleH.argmax(axis=0)  # 将weight最大的那个group，设为sample对应的group
-    plot_three_group(pca, 2-cluster, 'output/3.1.nmf.jpg')  # pca降至二维，按nmf所assign的标签，进行可视化
+    plot_three_group(pca, 2-cluster, 3, 'NMF clustering')  # pca降至二维，按nmf所assign的标签，进行可视化
     print(">>> nmf\nNMF分组统计：\n{}\n".format(pd.Series(cluster).value_counts()))
     # 参考 https://blog.csdn.net/acdreamers/article/details/44663421
 
@@ -129,9 +127,11 @@ def image_segmentation(infile, outfile):
 
 if __name__ == '__main__':
     data, target = load_iris(return_X_y=True)
+    plt.figure()
     clustering_task(data, target)
     dimension_reduction_task(data, target)
     image_segmentation('data/2.1.wuy.jpg', 'output/3.1.wuy-kmeans.jpg')
+    plt.savefig('output/3.1.clusterings.jpg', dpi=600)
 
 
 # 距离的度量
