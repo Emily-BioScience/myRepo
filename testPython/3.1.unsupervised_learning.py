@@ -1,6 +1,7 @@
 # -*- coding UTF-8 -*-
 import numpy as np
 import pandas as pd
+import PIL.Image as image
 from sklearn import metrics
 from sklearn.datasets import load_iris
 from sklearn.cluster import KMeans
@@ -67,7 +68,6 @@ def plot_three_group(x, y, file):
     plt.savefig(file, dpi=600)
 
 
-
 def dimension_reduction_task(data, target):
     # pca for plotting
     pcaModel = PCA(n_components=2)
@@ -80,7 +80,7 @@ def dimension_reduction_task(data, target):
     index = np.argsort(-featValue)  # 按特征值从大到小排序
     k = 2 # 选择前两个主成分
     selectVec = featVec.T[index[:k]]  # 特征向量为列向量，转置后，选取特征值靠前的k行
-    finalData = dataAdjust * np.matrix(selectVec.T)  # m * n, n* k => m * k
+    finalData = dataAdjust * np.mat(selectVec.T)  # m * n, n* k => m * k
                                                      # 两个np.array相乘，属于element-wise
                                                      # 两个np.matrix相乘，属于矩阵乘法
     reconData = (finalData * selectVec) + data.mean(axis=0)  # 还原到原始空间
@@ -94,9 +94,36 @@ def dimension_reduction_task(data, target):
     H = nmf.components_  # coefficient matrix: k groups * n samples
     scaleH = H / H.sum(axis=0)  # 用列和将H矩阵scale到0-1之间，即每个样本，在k个groups中的weights，合起来等于1
     cluster = scaleH.argmax(axis=0)  # 将weight最大的那个group，设为sample对应的group
-    plot_three_group(pca, 2-cluster, 'output/3.1.nmf.jpg')
+    plot_three_group(pca, 2-cluster, 'output/3.1.nmf.jpg')  # pca降至二维，按nmf所assign的标签，进行可视化
     print(">>> nmf\nNMF分组统计：\n{}\n".format(pd.Series(cluster).value_counts()))
     # 参考 https://blog.csdn.net/acdreamers/article/details/44663421
+
+
+def image_load(infile):
+    data = []
+    f = open(infile, 'rb')
+    img = image.open(f)
+    m, n = img.size
+    for i in range(m):
+        for j in range(n):
+            x, y, z = img.getpixel((i, j))
+            data.append([x/256.0, y/256.0, z/256.0])
+    f.close()
+    return(np.mat(data), m, n)
+
+
+def image_segmentation(infile, outfile):
+    imgData, row, col = image_load(infile)
+    print(">>> Image\nrow = {}; col = {}\n".format(row, col))
+    km = KMeans(n_clusters=3)
+    label = km.fit_predict(imgData)
+    label = label.reshape([row, col])
+    pic_new = image.new("RGB", (row, col))
+    for i in range(row):
+        for j in range(col):
+            value = int(256/(label[i][j]+1))
+            pic_new.putpixel((i,j), (value, value, value))
+    pic_new.save(outfile, 'JPEG')
 
 
 
@@ -104,6 +131,7 @@ if __name__ == '__main__':
     data, target = load_iris(return_X_y=True)
     clustering_task(data, target)
     dimension_reduction_task(data, target)
+    image_segmentation('data/2.1.wuy.jpg', 'output/3.1.wuy-kmeans.jpg')
 
 
 # 距离的度量
