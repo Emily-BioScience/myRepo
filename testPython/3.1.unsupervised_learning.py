@@ -1,13 +1,14 @@
 # -*- coding UTF-8 -*-
 import numpy as np
+import pandas as pd
 from sklearn import metrics
 from sklearn.datasets import load_iris
 from sklearn.cluster import KMeans
 from sklearn.cluster import DBSCAN
 from sklearn.decomposition import PCA
+from sklearn.decomposition import NMF
 import matplotlib.pyplot as plt
-
-plt.get_backend()
+# print(plt.get_backend())  # TkAgg
 
 
 def clustering_task(data, target):
@@ -44,30 +45,34 @@ def clustering_task(data, target):
     plt.savefig('output/3.1.roc-curve.pseudo.jpg', dpi=600)
 
 
-def dimension_reduction_task(data, target):
-    # pca for plotting
-    pcaModel = PCA(n_components=2)
-    pca = pcaModel.fit_transform(data)
+def plot_three_group(x, y, file):
     # plot
     red_x, red_y = [], []
     blue_x, blue_y = [], []
     green_x, green_y = [], []
-    for i in range(len(pca)):
-        if target[i] == 0:
-            red_x.append(pca[i][0])
-            red_y.append(pca[i][1])
-        elif target[i] == 1:
-            blue_x.append(pca[i][0])
-            blue_y.append(pca[i][1])
+    for i in range(len(x)):
+        if y[i] == 0:
+            red_x.append(x[i][0])
+            red_y.append(x[i][1])
+        elif y[i] == 1:
+            blue_x.append(x[i][0])
+            blue_y.append(x[i][1])
         else:
-            green_x.append(pca[i][0])
-            green_y.append(pca[i][1])
+            green_x.append(x[i][0])
+            green_y.append(x[i][1])
     plt.figure()
     plt.scatter(red_x, red_y, c='r', marker='x')
     plt.scatter(blue_x, blue_y, c='b', marker='D')
     plt.scatter(green_x, green_y, c='g', marker='.')
-    plt.savefig('output/3.1.pca.jpg', dpi=600)
+    plt.savefig(file, dpi=600)
 
+
+
+def dimension_reduction_task(data, target):
+    # pca for plotting
+    pcaModel = PCA(n_components=2)
+    pca = pcaModel.fit_transform(data)
+    plot_three_group(pca, target, 'output/3.1.pca.jpg')
     # pca manually
     dataAdjust = data - data.mean(axis=0)  # 数据中心化
     covmatrix = np.cov(dataAdjust.T)  # 求协方差矩阵
@@ -79,12 +84,19 @@ def dimension_reduction_task(data, target):
                                                      # 两个np.array相乘，属于element-wise
                                                      # 两个np.matrix相乘，属于矩阵乘法
     reconData = (finalData * selectVec) + data.mean(axis=0)  # 还原到原始空间
-    print("手动pca，与sklearn库算出来的总体差别：{:.3f}".format((finalData - pca).sum()))
-    print("手动pca还原出的data，与原始data的总体差别：{:.3f}".format((reconData - data).sum()))
+    print(">>> pca\n手动pca，与sklearn库算出来的总体差别：{:.3f}".format((finalData - pca).sum()))
+    print("手动pca还原出的data，与原始data的总体差别：{:.3f}\n".format((reconData - data).sum()))
     # 参考 https://www.cnblogs.com/clnchanpin/p/7199713.html
 
     # NMF clustering
-
+    nmf = NMF(n_components=3, init='random', random_state=0)
+    W = nmf.fit_transform(data.T)  # basis matrix: m features * k groups; input matrix: m features * n samples
+    H = nmf.components_  # coefficient matrix: k groups * n samples
+    scaleH = H / H.sum(axis=0)  # 用列和将H矩阵scale到0-1之间，即每个样本，在k个groups中的weights，合起来等于1
+    cluster = scaleH.argmax(axis=0)  # 将weight最大的那个group，设为sample对应的group
+    plot_three_group(pca, 2-cluster, 'output/3.1.nmf.jpg')
+    print(">>> nmf\nNMF分组统计：\n{}\n".format(pd.Series(cluster).value_counts()))
+    # 参考 https://blog.csdn.net/acdreamers/article/details/44663421
 
 
 
@@ -115,4 +127,4 @@ if __name__ == '__main__':
 # FastICA，图形图像特征提取，适用于超大规模数据，参数：所降维度及其他超参
 # NMF，图形图像特征提取，参数：所降维度及其他超参
 # LDA，文本数据，主题挖掘，参数：所降维度及其他超参
-
+# NMF, 矩阵中所有元素均为非负数约束条件之下，
