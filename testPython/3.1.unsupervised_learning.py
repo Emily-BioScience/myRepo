@@ -158,3 +158,4 @@ if __name__ == '__main__':
 # NMF, 矩阵中所有元素均为非负数约束条件之下，
 
 # 聚类算法统一封装在sklearn.cluster模块里
+# 降维算法，sklearn.decomposition
