@@ -1,8 +1,10 @@
 #! /usr/bin/env python
 # -*- coding UTF-8 -*-
-# @ author: Emily-BioScience
+# @ author: Yang Wu
 # Email: wuyang.bnu@139.com
 
+import numpy as np
+import pandas as pd
 from sklearn import metrics
 from sklearn.datasets import load_iris
 from sklearn.decomposition import PCA
@@ -12,13 +14,10 @@ import matplotlib.pyplot as plt
 
 
 def use_kNN(data, target):
-    # 一行划分训练集和测试集
-    # test_size=.5，把输入样本集等分成训练集和测试集
-    # stratify=target，让分出来的训练集、测试集里，不同类别的输入样本比例相同
-    # random_state=42，指定随机数指定，保证结果的可重复性
+    # test_size，指定测试集比例；stratify，保证划分后，两个集合的各类别样本比例一致；random_state，保证可重复性
     X_train, X_test, Y_train, Y_test = train_test_split(data, target, stratify=target, test_size=.5, random_state=42)
     # k nearest neighbor model
-    knn = KNeighborsClassifier(n_neighbors=5)
+    knn = KNeighborsClassifier(n_neighbors=5, weights='distance')
     knn.fit(X_train, Y_train)  # 拿训练集
     Y_predict = knn.predict(X_test)
     accuracy = metrics.accuracy_score(Y_test, Y_predict)
@@ -26,30 +25,13 @@ def use_kNN(data, target):
     # plot
     pca = PCA(n_components=2)
     X_2dim = pca.fit_transform(X_test)
-    red_X, red_Y, red_C = [], [], []
-    blue_X, blue_Y, blue_C = [], [], []
-    green_X, green_Y, green_C = [], [], []
-    for i in range(X_2dim.shape[0]):
-        if Y_test[i] == 0:
-            red_X.append(X_2dim[i, 0])
-            red_Y.append(X_2dim[i, 1])
-            red_C.append(Y_predict[i])
-        elif Y_test[i] == 1:
-            blue_X.append(X_2dim[i, 0])
-            blue_Y.append(X_2dim[i, 1])
-            blue_C.append(Y_predict[i])
-        else:
-            green_X.append(X_2dim[i, 0])
-            green_Y.append(X_2dim[i, 1])
-            green_C.append(Y_predict[i])
-
     plt.subplot(2, 2, 1)
-    plt.title("kNN classifier, accuracy={:.2f}".format(accuracy))
-    plt.scatter(red_X, red_Y, c=red_C, marker='x')
-    plt.scatter(blue_X, blue_Y, c=red_C, marker='D')
-    plt.scatter(green_X, green_Y, c=red_C, marker='.')
+    plt.title("kNN acc={:.2f}, by prediction".format(accuracy))
+    plt.scatter(X_2dim[:,0], X_2dim[:,1], c=Y_predict)
+    plt.subplot(2, 2, 2)
+    plt.title("kNN acc={:.2f}, by label".format(accuracy))
+    plt.scatter(X_2dim[:,0], X_2dim[:,1], c=Y_test)
     plt.show()
-
 
 
 
