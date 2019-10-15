@@ -7,38 +7,71 @@ import numpy as np
 import pandas as pd
 from sklearn import metrics
 from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.model_selection import cross_val_score
 from sklearn.decomposition import PCA
 from sklearn.neighbors import  KNeighborsClassifier
-from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
 import matplotlib.pyplot as plt
 
 
-def use_kNN(data, target):
-    # test_size，指定测试集比例；stratify，保证划分后，两个集合的各类别样本比例一致；random_state，保证可重复性
-    X_train, X_test, Y_train, Y_test = train_test_split(data, target, stratify=target, test_size=.5, random_state=42)
-    # k nearest neighbor model
-    knn = KNeighborsClassifier(n_neighbors=5, weights='distance')
-    knn.fit(X_train, Y_train)  # 拿训练集
-    Y_predict = knn.predict(X_test)
-    accuracy = metrics.accuracy_score(Y_test, Y_predict)
-
-    # plot
+def plot_results(X_test, Y_predict, Y_test, model, accuracy, number):
+    # PCA降维
     pca = PCA(n_components=2)
-    X_2dim = pca.fit_transform(X_test)
-    plt.subplot(2, 2, 1)
-    plt.title("kNN acc={:.2f}, by prediction".format(accuracy))
-    plt.scatter(X_2dim[:,0], X_2dim[:,1], c=Y_predict)
-    plt.subplot(2, 2, 2)
-    plt.title("kNN acc={:.2f}, by label".format(accuracy))
-    plt.scatter(X_2dim[:,0], X_2dim[:,1], c=Y_test)
-    plt.show()
+    X_2dim = pca.fit_transform(X_test)  # 降到二维，用于可视化
+    # Plot
+    plt.subplot(3, 2, number)
+    plt.title("{} acc={:.2f}, by prediction".format(model, accuracy))
+    plt.scatter(X_2dim[:,0], X_2dim[:,1], c=Y_predict)  # 按预测值区分不同的颜色
+    plt.subplot(3, 2, number+1)
+    plt.title("{} acc={:.2f}, by label".format(model, accuracy))
+    plt.scatter(X_2dim[:,0], X_2dim[:,1], c=Y_test)  # 按标签区分不同的颜色
+
+
+def use_kNN(X_train, X_test, Y_train, Y_test):
+    # k nearest neighbor model
+    knn = KNeighborsClassifier(n_neighbors=5, weights='distance')  # n可以通过交叉验证来选，distance, 越近的点权重越高
+    knn.fit(X_train, Y_train)  # 拿训练集来train
+    Y_predict = knn.predict(X_test)  # 为测试集进行predict
+    accuracy = metrics.accuracy_score(Y_test, Y_predict)  # 与答案做比较，计算accuracy
+    plot_results(X_test, Y_predict, Y_test, 'kNN', accuracy, 1)
+
+
+def use_decision_tree(X_train, X_test, Y_train, Y_test):
+    # decision tree
+    tree = DecisionTreeClassifier(criterion='gini', max_depth=3)
+    tree.fit(X_train, Y_train)
+    Y_predict = tree.predict(X_test)
+    accuracy = metrics.accuracy_score(Y_test, Y_predict)
+    plot_results(X_test, Y_predict, Y_test, 'DTree', accuracy, 3)
+
+
+def use_decision_tree_cv(data, target):
+    # decision tree, cross-validation
+    tree = DecisionTreeClassifier(criterion='gini', max_depth=3)
+    cv = cross_val_score(tree, data, target, cv=10)
+    print(">>> decision tree\n10-fold cross validation: {}\n".format(cv))
+
+
+def use_naive_bayes():
+    pass
+
 
 
 
 if __name__ == '__main__':
-    plt.figure()
+    # load测试数据集，准备figure
     data, target = load_iris(return_X_y=True)
-    use_kNN(data, target)
+    plt.figure()
+    # test_size，指定测试集比例；stratify，保证划分后，两个集合的各类别样本比例一致；random_state，保证可重复性
+    X_train, X_test, Y_train, Y_test = train_test_split(data, target, stratify=target, test_size=.5, random_state=42)
+    # 使用分类器
+    use_kNN(X_train, X_test, Y_train, Y_test)
+    use_decision_tree(X_train, X_test, Y_train, Y_test)
+    use_decision_tree_cv(data, target)
+    use_naive_bayes()
+    # show plots
+    plt.show()
 
 
 
