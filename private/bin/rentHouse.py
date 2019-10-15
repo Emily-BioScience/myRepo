@@ -19,6 +19,7 @@ def calculate_price():
             'discount': [1, 1, 1, 1, 1, 1, 1],
             'year': [1, 1, 1, 2, 1, 2, 1]}
     data = pd.DataFrame(data)
+    fo.write(">>>计算\n")
     for i in data.index:
         line = data.ix[i]
         get = real_get(line['price'], line['days'], line['discount'], line['year'])
@@ -33,8 +34,8 @@ def print_pay_details(date, early, time, price):
         day = day - early
         if day <= 0:
             day, month = day + 30, month - 1
-    tag = "\n>>>方式：首次付{}个月，其他期提前{}天付".format(time[0], early)
-    fo.write(tag)
+    tag = "\n>>>方式：首次付{}个月，其他期提前{}天付".format(price[0], early)
+    fo.write(tag + "\n")
     for i in range(len(price)):  # 计算每一次支付的时间和数量
         new_month, new_year = month + time[i], year
         if new_month / 12 > 2:  # 两年后
