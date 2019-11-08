@@ -1,7 +1,9 @@
 # -*- coding: UTF-8 -*-
 import jieba
+import pickle
 import turtle as t
 import wordcloud as w
+import numpy as np
 from scipy.misc import imread
 
 
@@ -228,6 +230,14 @@ def test_word_cloud(infile, outfile):
         wc.generate(data)  # 用空格分隔单词，统计单词出现次数并过滤，根据统计配置字号，布局颜色环境尺寸
         wc.to_file(outfile)  # 进一步优化迭代
 
+def test_pickle(outfile):
+    data = np.zeros((5, 6), int)
+    with open(outfile, 'wb') as fo:
+        pickle.dump(data, fo)  # 存储
+        fo.close()
+        fi = open(outfile, 'rb')
+        read = pickle.load(fi)  # 读取
+        print(read)
 
 
 if __name__ == '__main__':
@@ -240,4 +250,6 @@ if __name__ == '__main__':
     # use_csv('data/1.7.input.txt', 'output/1.7.output.txt')
     # use_word_cloud('data/1.7.input.txt', 'output/1.7.wordcloud.png')
     test_word_cloud('data/1.7.govWorkReport.txt', 'output/1.7.wordcloud.png')
+    test_pickle('output/1.7.pickle.txt')
+
 
