@@ -57,7 +57,7 @@ def convertToBed(data):
 
 def getRunList(first, step):
     inpath = sys.path[0] + '/../output'
-    sample = MyListDir(path='../output', retain='.methyl_level.txt')
+    sample = MyListDir(path=inpath, retain='.methyl_level.txt')
     all_list = list(sample.fullfile_list)
     run_list = all_list[first*step : first*step+step]
     return(all_list, run_list)
