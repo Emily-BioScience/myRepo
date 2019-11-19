@@ -3,6 +3,7 @@
 # @ author: Yang Wu
 # Email: wuyang.bnu@139.com
 import os
+import sys
 import argparse
 import numpy as np
 import pandas as pd
@@ -10,9 +11,32 @@ from progLog import ProgLog
 from myListDir import MyListDir
 
 
+def mergeAnno(valuefile, annofile, outfile):
+    # read contents from files
+    value_base = os.path.basename(valuefile)
+    anno_base = os.path.basename(annofile)
+    log = ProgLog(infor='\t#### Start merging files: {} and {}'.format(value_base, anno_base))
+    value = pd.read_csv(valuefile, sep="\t")
+    log.progReport("read file {}".format(os.path.basename(value_base)))
+    anno = pd.read_csv(annofile, sep="\t", header=None)
+    anno.columns = ['Type', 'Anno', 'Chr', 'Position', 'End', 'Base', 'Base2']
+    log.progReport("read file {}".format(anno_base))
+    # merge two files
+    out = pd.merge(anno, value, how='left', on=['Chr', 'Base', 'Position']).fillna('NA')
+    out = out.drop(['End', 'Base2'], axis=1)
+    col = out.columns[2:7]
+    col = col.append(out.columns[:2])
+    col = col.append(out.columns[7:])
+    out = out.reindex(columns = col)
+    log.progReport("read file {}".format(anno_base))
+    # output to csv
+    out.to_csv(outfile, sep="\t", index=False, header=True)
+    log.endReport('to csv')
+
+
 def annotateSite(infile, outfile):
-    log = ProgLog(infor='>>> Start annotating {}'.format(infile))
-    annovar = '~/yangrui/softs/annovar'
+    log = ProgLog(infor='\t#### Start annotating {}'.format(os.path.basename(infile)))
+    annovar = '~/yangrui/softs/annovar'  # customize
     cmd = "{}/annotate_variation.pl -out {} -build hg19 {} {}/humandb/".format(annovar, outfile, infile, annovar)
     print("\t{}".format(cmd))
     os.system(cmd)
@@ -20,7 +44,7 @@ def annotateSite(infile, outfile):
 
 
 def formatConversion(infile, outfile, type):
-    log = ProgLog(infor='>>> Start analyzing {}'.format(infile))
+    log = ProgLog(infor='\t#### Start analyzing {}'.format(os.path.basename(infile)))
     data = pd.read_csv(infile, sep="\t")
     log.progReport('read infile')
     if type == 'bed':
@@ -56,7 +80,7 @@ def convertToBed(data):
 
 
 def getRunList(first, step):
-    inpath = sys.path[0] + '/../output'
+    inpath = sys.path[0] + '/../output'  # customize
     sample = MyListDir(path=inpath, retain='.methyl_level.txt')
     all_list = list(sample.fullfile_list)
     run_list = all_list[first*step : first*step+step]
@@ -65,27 +89,37 @@ def getRunList(first, step):
 
 
 if __name__ == '__main__':
+    # input parameters
     parser = argparse.ArgumentParser("Input two parameters")
-    parser.add_argument('-f', '--first', type=int, help="slice, first element")
-    parser.add_argument('-s', '--step', type=int, help="slice, step size")
-    parser.add_argument('-t', '--type', type=str, help='format, bed or avinput')
-    parser.add_argument('-r', '--run', type=int, help='run format convertion or not?')
+    parser.add_argument('-f', '--first', type=int, help="slice, first element, RECOMMENDED!")
+    parser.add_argument('-s', '--step', type=int, help="slice, step size, RECOMMENDED!")
+    parser.add_argument('-c', '--convert', type=bool, help='convert file format or not?')
+    parser.add_argument('-a', '--anno', type=bool, help='anno methyl site using annovar or not?')
+    parser.add_argument('-m', '--merge', type=bool, help='merge methyl file and anno file or not?')
     args = parser.parse_args()
-    if args.first is None or args.step is None or args.type is None or args.run is None:
+    if all(p is None for p in [args.first, args.step]):
         parser.print_help()
         exit()
+    # run list
     all_list, run_list = getRunList(args.first, args.step)
-    print(">>> Input files:\nall: {} ({})\nselect: {} ({})"
+    print(">>> list:\nall: {} ({})\nselect: {} ({})"
           .format(all_list, len(all_list), run_list, len(run_list)))
-
     # run_list = ['../output/lambda_phage.methyl_level.txt']  # test the smallest sample
+    # run in circle
     for infile in run_list:
         chr = os.path.basename(infile).split('.methyl_level.txt')[0]
-        outfile = os.path.dirname(infile) + '/' + chr + '.' + args.type
-        if args.run:
-            formatConversion(infile, outfile, args.type)
-        annofile = os.path.dirname(infile) + '/' + chr + '.anno'
-        annotateSite(outfile, annofile)
+        convfile = os.path.dirname(infile) + '/' + chr + '.avinput'
+        annofile = os.path.dirname(infile) + '/' + chr
+        outfile = os.path.dirname(infile) + '/' + chr + '.csv'
+        print("\n>>> for {}\ninfile = {}\nconvfile = {}\nannofile = {}.variant_function\noutfile = {}".
+              format(chr, infile, convfile, annofile, outfile))
+        if args.convert:
+            formatConversion(infile, convfile, 'avinput')
+        if args.anno:
+            annotateSite(convfile, annofile)
+        if args.merge:
+            mergeAnno(infile, annofile + '.variant_function', outfile)
+
+# python bin/annotateMethylSite.py -f 0 -s 4 -c 1 -a 1 -m 1
 
 
-# python annotateMethylSite.py -f 0 -s 4 -t avinput -r 0
