@@ -28,7 +28,7 @@ def mergeAnno(valuefile, annofile, outfile):
     col = col.append(out.columns[:2])
     col = col.append(out.columns[7:])
     out = out.reindex(columns = col)
-    log.progReport("read file {}".format(anno_base))
+    log.progReport("merge files {} and {}".format(value_base, anno_base))
     # output to csv
     out.to_csv(outfile, sep="\t", index=False, header=True)
     log.endReport('to csv')
